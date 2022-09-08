@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import fetchTriviaToken from '../services/fetchTrivia';
+import SettingButton from '../components/SettingButton';
 
 class Login extends Component {
   state = {
@@ -30,6 +31,7 @@ class Login extends Component {
 
   render() {
     const { inputName, inputEmail, isDisabled } = this.state;
+    const { history } = this.props;
     return (
       <main>
         <form action="#">
@@ -61,6 +63,7 @@ class Login extends Component {
           >
             Play
           </button>
+          <SettingButton history={ history } />
         </form>
       </main>
     );
