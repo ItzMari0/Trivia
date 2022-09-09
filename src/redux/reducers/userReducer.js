@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   name: '',
   avatar: '',
   score: 0,
+  correctAnswers: 0,
 };
 
 const setUserInfo = (userInfo, state) => {
