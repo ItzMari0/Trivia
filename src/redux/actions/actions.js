@@ -1,22 +1,30 @@
-import fetchTriviaToken from '../../services/fetchTrivia';
+import fetchTriviaQuestion from '../../services/fetchTriviaQ';
 
 export const GET_TOKEN = 'GET_TOKEN';
 export const ERROR = 'ERROR';
-
-const getToken = (payload) => ({
-  type: GET_TOKEN,
-  payload,
-});
+export const GET_QUESTIONS = 'GET_QUESTIONS';
+export const NEW_LOGIN = 'NEW_LOGIN';
 
 const fetchError = () => ({
   type: ERROR,
 });
 
-export const fetchToken = async () => {
-  try {
-    const tokenObject = await fetchTriviaToken();
-    getToken(tokenObject);
-  } catch {
-    fetchError();
-  }
-};
+const getQuestions = (payload) => ({
+  type: GET_QUESTIONS,
+  payload,
+});
+
+export function fetchQuestions(token) {
+  return async (dispatch) => {
+    try {
+      const questions = await fetchTriviaQuestion(token);
+      dispatch(getQuestions(questions));
+    } catch {
+      dispatch(fetchError());
+    }
+  };
+}
+
+export const newLogin = () => ({
+  type: NEW_LOGIN,
+});
