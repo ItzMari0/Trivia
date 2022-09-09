@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import fetchTriviaToken from '../services/fetchTrivia';
 import SettingButton from '../components/SettingButton';
-import { getUserInfo } from '../redux/actions/actions';
+import { newLogin, getUserInfo } from '../redux/actions/actions';
 
 class Login extends Component {
   state = {
@@ -25,9 +25,10 @@ class Login extends Component {
   };
 
   clickButton = async (event) => {
-    event.preventDefault();
     const { dispatch } = this.props;
     const { inputName: name, inputEmail: email } = this.state;
+    event.preventDefault();
+    dispatch(newLogin());
     dispatch(getUserInfo({ name, email }));
     await fetchTriviaToken();
     const { history } = this.props;
