@@ -5,9 +5,19 @@ import { connect } from 'react-redux';
 class Feedback extends Component {
   render() {
     const { avatar, correctAnswers, score } = this.props;
+    const limitCorrectionQuestion = 3;
+    const messageOfMinusThree = 'Could be better...';
+    const messageMoreThanThree = 'Well Done!';
+
     return (
       <main>
         <img src={ avatar } alt="foto do avatar" />
+        <section>
+          <h1>
+            { correctAnswers < limitCorrectionQuestion
+              ? messageOfMinusThree : messageMoreThanThree }
+          </h1>
+        </section>
         <p>
           { 'Você acertou ' }
           <span data-testid="feedback-total-question">{ correctAnswers }</span>
