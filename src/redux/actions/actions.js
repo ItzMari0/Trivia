@@ -4,6 +4,7 @@ export const GET_TOKEN = 'GET_TOKEN';
 export const ERROR = 'ERROR';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const NEW_LOGIN = 'NEW_LOGIN';
+export const GET_USER_INFO = 'GET_USER_INFO';
 
 const fetchError = () => ({
   type: ERROR,
@@ -27,4 +28,9 @@ export function fetchQuestions(token) {
 
 export const newLogin = () => ({
   type: NEW_LOGIN,
+});
+
+export const getUserInfo = (payload) => ({
+  type: GET_USER_INFO,
+  payload,
 });
