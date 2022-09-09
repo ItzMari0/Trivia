@@ -6,16 +6,16 @@ class Feedback extends Component {
   render() {
     const { avatar, correctAnswers, score } = this.props;
     const limitCorrectionQuestion = 3;
-    const messageOfMinusThree = 'Could be better...';
-    const messageMoreThanThree = 'Well Done!';
 
     return (
       <main>
         <img src={ avatar } alt="foto do avatar" />
         <section>
           <h1>
-            { correctAnswers < limitCorrectionQuestion
-              ? messageOfMinusThree : messageMoreThanThree }
+            {
+              (correctAnswers < limitCorrectionQuestion)
+                ? 'Could be better...' : 'Well Done!'
+            }
           </h1>
         </section>
         <p>
