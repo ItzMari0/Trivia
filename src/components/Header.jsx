@@ -25,5 +25,5 @@ Header.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   avatar: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  score: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
 };
