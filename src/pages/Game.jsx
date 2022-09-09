@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import { fetchQuestions } from '../redux/actions/actions';
 import Question from '../components/Question';
 
-const MAGIC_NUMBER = 4;
+const QUESTION_LIMIT = 4;
 
 class Game extends Component {
   state = {
@@ -40,7 +40,7 @@ class Game extends Component {
         <Header history={ history } />
         <main>
           <h1>TRIVIA</h1>
-          {(questions.length > MAGIC_NUMBER)
+          {(questions.length > QUESTION_LIMIT)
             ? this.questionElement()
             : <p>carregando</p> }
         </main>
