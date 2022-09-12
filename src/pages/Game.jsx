@@ -34,13 +34,18 @@ class Game extends Component {
   };
 
   nextBtnClick = () => {
-    const { history } = this.props;
+    const { history, name, avatar, score } = this.props;
     const { currentQuestion } = this.state;
     if (currentQuestion < QUESTION_LIMIT) {
       this.setState((previousState) => ({
         currentQuestion: previousState.currentQuestion + 1,
       }));
     } else {
+      const lastRanking = JSON.parse(localStorage.getItem('ranking'));
+      const newRanking = (lastRanking)
+        ? [...lastRanking, { name, avatar, score }] : [{ name, avatar, score }];
+      const ranking = JSON.stringify(newRanking);
+      localStorage.setItem('ranking', ranking);
       history.push('/feedback');
     }
   };
@@ -61,9 +66,10 @@ class Game extends Component {
   }
 }
 
-const mapStateToProps = ({ questionsReducer }) => ({
+const mapStateToProps = ({ questionsReducer, player }) => ({
   questions: questionsReducer.questions,
   isInvalid: questionsReducer.isInvalid,
+  ...player,
 });
 
 export default connect(mapStateToProps)(Game);
@@ -78,4 +84,7 @@ Game.propTypes = {
     question: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
   })).isRequired,
+  name: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
 };
