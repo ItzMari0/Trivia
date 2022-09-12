@@ -65,9 +65,9 @@ class Question extends Component {
   handleNextBtn = () => {
     const { nextQuestion } = this.props;
     this.setState({ isDisabled: false, timer: 30 }, () => {
-      nextQuestion();
       this.setState({ answers: this.randomizeAnswers() }, () => {
         this.answerTimer = setInterval(this.answerTimerSettings, ONE_SECOND);
+        nextQuestion();
       });
     });
   };
