@@ -17,15 +17,19 @@ class Question extends Component {
   };
 
   componentDidMount() {
-    this.setState({ answers: this.randomizeAnswers() }, () => {
-      this.answerTimer = setInterval(this.answerTimerSettings, ONE_SECOND);
-    });
+    this.setTimerStartValue();
   }
 
   componentDidUpdate() {
     const { timer } = this.state;
     if (timer === 0) this.handleAnswer();
   }
+
+  setTimerStartValue = () => {
+    this.setState({ answers: this.randomizeAnswers() }, () => {
+      this.answerTimer = setInterval(this.answerTimerSettings, ONE_SECOND);
+    });
+  };
 
   answerTimerSettings = () => {
     this.setState((prevState) => ({ timer: prevState.timer - 1 }));
@@ -64,11 +68,9 @@ class Question extends Component {
 
   handleNextBtn = () => {
     const { nextQuestion } = this.props;
+    nextQuestion();
     this.setState({ isDisabled: false, timer: 30 }, () => {
-      this.setState({ answers: this.randomizeAnswers() }, () => {
-        this.answerTimer = setInterval(this.answerTimerSettings, ONE_SECOND);
-        nextQuestion();
-      });
+      this.setTimerStartValue();
     });
   };
 
