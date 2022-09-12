@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Answer from './Answer';
 
 const NUMBER = 0.5;
 const ONE_SECOND = 1000;
@@ -8,14 +9,12 @@ class Question extends Component {
   state = {
     timer: 30,
     answers: [],
-    answerTimer: null,
     isDisabled: false,
   };
 
   componentDidMount() {
     this.setState({ answers: this.randomizeAnswers() }, () => {
-      const answerTimer = setInterval(this.answerTimer, ONE_SECOND);
-      this.setState({ answerTimer });
+      this.answerTimer = setInterval(this.answerTimerSettings, ONE_SECOND);
     });
   }
 
@@ -24,41 +23,27 @@ class Question extends Component {
     if (timer === 0) this.timeOut();
   }
 
-  answerTimer = () => {
+  answerTimerSettings = () => {
     this.setState((prevState) => ({ timer: prevState.timer - 1 }));
   };
 
   timeOut = () => {
-    const { answerTimer, isDisabled } = this.state;
-    clearInterval(answerTimer);
+    const { isDisabled } = this.state;
+    clearInterval(this.answerTimer);
     if (!isDisabled) {
-      this.setState((prevState) => ({
-        answers: prevState.answers
-          .map((answer) => ({ ...answer, props: { ...answer.props, disabled: true } })),
+      this.setState({
         isDisabled: true,
-      }));
+      });
     }
   };
 
   randomizeAnswers = () => {
     const { questionObj } = this.props;
-    const correctAnswer = (
-      <button
-        type="button"
-        data-testid="correct-answer"
-        key="correct"
-      >
-        { questionObj.correct_answer }
-      </button>);
-    const wrongAnswers = questionObj.incorrect_answers.map((answer, index) => (
-      <button
-        type="button"
-        data-testid={ `wrong-answer-${index}` }
-        key={ index }
-      >
-        { answer }
-      </button>
-    ));
+    const correctAnswer = { answer: questionObj.correct_answer, isCorret: true };
+    const wrongAnswers = questionObj.incorrect_answers.map((answer) => ({
+      answer,
+      isCorret: false,
+    }));
     const answers = [...wrongAnswers, correctAnswer];
     const answersMixer = answers.sort(() => Math.random() - NUMBER);
     return answersMixer;
@@ -79,7 +64,13 @@ class Question extends Component {
           </p>
         </section>
         <div data-testid="answer-options">
-          { answers }
+          { answers.map((answer, index) => (
+            <Answer
+              key={ `answer-${index}` }
+              isDisabled={ isDisabled }
+              info={ answer }
+            />
+          )) }
         </div>
         { isDisabled && <button type="button">Next</button> }
       </>
