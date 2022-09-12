@@ -17,7 +17,7 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({ ...user });
+const mapStateToProps = ({ player }) => ({ ...player });
 
 export default connect(mapStateToProps)(Header);
 
