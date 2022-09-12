@@ -14,13 +14,7 @@ export default class Ranking extends Component {
     const stringifiedRanking = localStorage.getItem('ranking');
     const ranking = JSON.parse(stringifiedRanking);
     const sortedRanking = ranking
-      .sort((player, nextPlayer) => {
-        const BIGGER = 1;
-        const SMALLER = -1;
-        if (player.score < nextPlayer.score) {
-          return BIGGER;
-        } return SMALLER;
-      });
+      .sort((player, nextPlayer) => nextPlayer.score - player.score);
     this.setState({ ranking: sortedRanking });
   };
 
