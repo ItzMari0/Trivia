@@ -20,14 +20,14 @@ class Question extends Component {
 
   componentDidUpdate() {
     const { timer } = this.state;
-    if (timer === 0) this.timeOut();
+    if (timer === 0) this.handleAnswer();
   }
 
   answerTimerSettings = () => {
     this.setState((prevState) => ({ timer: prevState.timer - 1 }));
   };
 
-  timeOut = () => {
+  handleAnswer = () => {
     const { isDisabled } = this.state;
     clearInterval(this.answerTimer);
     if (!isDisabled) {
@@ -69,6 +69,7 @@ class Question extends Component {
               key={ `answer-${index}` }
               isDisabled={ isDisabled }
               info={ answer }
+              handleAnswer={ this.handleAnswer }
             />
           )) }
         </div>

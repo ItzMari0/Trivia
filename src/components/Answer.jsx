@@ -2,13 +2,32 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Answer extends Component {
-  render() {
+  state = {
+    answerClass: 'answer-button',
+    answered: false,
+  };
+
+  componentDidUpdate() {
     const { isDisabled, info } = this.props;
+    const { answered } = this.state;
+    if (isDisabled && !answered) {
+      this.setState({
+        answerClass: (info.isCorret) ? 'answer-button correct' : 'answer-button wrong',
+        answered: true,
+      });
+    }
+  }
+
+  render() {
+    const { isDisabled, info, handleAnswer } = this.props;
+    const { answerClass } = this.state;
     return (
       <button
         type="button"
         disabled={ isDisabled }
         data-testid={ (info.isCorret) ? 'correct-answer' : 'wrong-answer' }
+        onClick={ () => handleAnswer() }
+        className={ answerClass }
       >
         { info.answer }
       </button>
@@ -22,6 +41,7 @@ Answer.propTypes = {
     answer: PropTypes.string.isRequired,
     isCorret: PropTypes.bool.isRequired,
   }).isRequired,
+  handleAnswer: PropTypes.func.isRequired,
 };
 
 export default Answer;
