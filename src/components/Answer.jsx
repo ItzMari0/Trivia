@@ -31,7 +31,7 @@ class Answer extends Component {
         type="button"
         disabled={ isDisabled }
         data-testid={ (info.isCorret) ? 'correct-answer' : 'wrong-answer' }
-        onClick={ () => handleAnswer() }
+        onClick={ () => handleAnswer(info.isCorret) }
         className={ answerClass }
       >
         { info.answer }

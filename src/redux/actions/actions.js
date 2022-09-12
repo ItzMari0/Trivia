@@ -5,6 +5,7 @@ export const ERROR = 'ERROR';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const NEW_LOGIN = 'NEW_LOGIN';
 export const GET_USER_INFO = 'GET_USER_INFO';
+export const CORRECT_ANSWER = 'CORRECT_ANSWER';
 
 const fetchError = () => ({
   type: ERROR,
@@ -32,5 +33,10 @@ export const newLogin = () => ({
 
 export const getUserInfo = (payload) => ({
   type: GET_USER_INFO,
+  payload,
+});
+
+export const correctAnswer = (payload) => ({
+  type: CORRECT_ANSWER,
   payload,
 });

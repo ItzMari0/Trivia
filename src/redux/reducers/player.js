@@ -1,5 +1,5 @@
 import md5 from 'crypto-js/md5';
-import { ERROR, GET_USER_INFO } from '../actions/actions';
+import { CORRECT_ANSWER, ERROR, GET_USER_INFO } from '../actions/actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -15,15 +15,21 @@ const setUserInfo = (userInfo, state) => {
   return ({ ...state, name, avatar });
 };
 
-const user = (state = INITIAL_STATE, action) => {
+const player = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case ERROR:
     return { ...state, error: true };
   case GET_USER_INFO:
     return setUserInfo(action.payload, state);
+  case CORRECT_ANSWER:
+    return {
+      ...state,
+      score: state.score + action.payload,
+      correctAnswers: state.correctAnswers + 1,
+    };
   default:
     return state;
   }
 };
 
-export default user;
+export default player;
