@@ -5,14 +5,14 @@ const INITIAL_STATE = {
   name: '',
   avatar: '',
   score: 0,
-  correctAnswers: 0,
+  assertions: 0,
 };
 
 const setUserInfo = (userInfo, state) => {
   const { email, name } = userInfo;
   const hash = md5(email).toString();
   const avatar = `https://www.gravatar.com/avatar/${hash}`;
-  return ({ ...state, name, avatar });
+  return ({ ...state, name, avatar, score: 0, assertions: 0 });
 };
 
 const player = (state = INITIAL_STATE, action) => {
@@ -25,7 +25,7 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: state.score + action.payload,
-      correctAnswers: state.correctAnswers + 1,
+      assertions: state.assertions + 1,
     };
   default:
     return state;
