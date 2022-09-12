@@ -45,12 +45,6 @@ class Game extends Component {
     }
   };
 
-  clickRanking = (event) => {
-    event.preventDefault();
-    const { history } = this.props;
-    history.push('/ranking');
-  };
-
   render() {
     const { history, questions } = this.props;
     return (
@@ -62,14 +56,6 @@ class Game extends Component {
             ? this.questionElement()
             : <p>carregando</p> }
         </main>
-        <br />
-        <button
-          type="submit"
-          onClick={ this.clickRanking }
-          data-testid="btn-ranking"
-        >
-          Ranking
-        </button>
       </>
     );
   }
