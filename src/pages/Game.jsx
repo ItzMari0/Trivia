@@ -30,7 +30,19 @@ class Game extends Component {
     const { currentQuestion } = this.state;
     const { questions } = this.props;
     const questionObj = questions[currentQuestion];
-    return (<Question questionObj={ questionObj } />);
+    return (<Question questionObj={ questionObj } nextQuestion={ this.nextBtnClick } />);
+  };
+
+  nextBtnClick = () => {
+    const { history } = this.props;
+    const { currentQuestion } = this.state;
+    if (currentQuestion < QUESTION_LIMIT) {
+      this.setState((previousState) => ({
+        currentQuestion: previousState.currentQuestion + 1,
+      }));
+    } else {
+      history.push('/feedback');
+    }
   };
 
   render() {

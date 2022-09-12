@@ -62,6 +62,16 @@ class Question extends Component {
     return answersMixer;
   };
 
+  handleNextBtn = () => {
+    const { nextQuestion } = this.props;
+    this.setState({ isDisabled: false, timer: 30 }, () => {
+      nextQuestion();
+      this.setState({ answers: this.randomizeAnswers() }, () => {
+        this.answerTimer = setInterval(this.answerTimerSettings, ONE_SECOND);
+      });
+    });
+  };
+
   render() {
     const { questionObj } = this.props;
     const { timer, answers, isDisabled } = this.state;
@@ -86,7 +96,16 @@ class Question extends Component {
             />
           )) }
         </div>
-        { isDisabled && <button type="button">Next</button> }
+        {isDisabled
+          && (
+            <button
+              type="button"
+              onClick={ this.handleNextBtn }
+              data-testid="btn-next"
+            >
+              Next
+            </button>
+          )}
       </>
     );
   }
@@ -102,5 +121,6 @@ Question.propTypes = {
     incorrect_answers: PropTypes.arrayOf(PropTypes.string).isRequired,
     difficulty: PropTypes.string.isRequired,
   }).isRequired,
+  nextQuestion: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
 };

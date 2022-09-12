@@ -15,6 +15,11 @@ class Answer extends Component {
         answerClass: (info.isCorret) ? 'answer-button correct' : 'answer-button wrong',
         answered: true,
       });
+    } else if (!isDisabled && answered) {
+      this.setState({
+        answerClass: 'answer-button',
+        answered: false,
+      });
     }
   }
 
