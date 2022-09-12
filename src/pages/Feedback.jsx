@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ButtonPlayAgain from '../components/ButtonPlayAgain';
 import Header from '../components/Header';
 
 class Feedback extends Component {
@@ -31,7 +30,20 @@ class Feedback extends Component {
           { ' pontos' }
         </p>
         <section>
-          <ButtonPlayAgain />
+          <button
+            type="submit"
+            onClick={ () => history.push('/ranking') }
+            data-testid="btn-ranking"
+          >
+            Ranking
+          </button>
+          <button
+            type="submit"
+            onClick={ () => history.push('/') }
+            data-testid="btn-play-again"
+          >
+            Play Again
+          </button>
         </section>
       </main>
     );
