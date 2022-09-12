@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ButtonPlayAgain from '../components/ButtonPlayAgain';
 
 class Feedback extends Component {
   render() {
@@ -28,6 +29,9 @@ class Feedback extends Component {
           <span data-testid="feedback-total-score">{ score }</span>
           { ' pontos' }
         </p>
+        <section>
+          <ButtonPlayAgain />
+        </section>
       </main>
     );
   }
