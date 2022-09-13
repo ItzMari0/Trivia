@@ -84,7 +84,7 @@ class Question extends Component {
           <h2 data-testid="question-text">{questionObj.question}</h2>
           <p>
             { 'Tempo: ' }
-            <span>{ timer }</span>
+            <span data-testid="timer">{ timer }</span>
             s
           </p>
         </section>
