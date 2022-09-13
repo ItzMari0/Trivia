@@ -12,7 +12,7 @@ const initialState = {
   name: 'group10',
   avatar: AVATAR,
   score: 300,
-  correctAnswers: 5,
+  assertions: 5,
   },
 };
 
