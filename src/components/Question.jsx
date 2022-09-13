@@ -56,10 +56,10 @@ class Question extends Component {
       const difficulty = (questionObj.difficulty === 'easy' ? 1 : 2);
       this.setState({ difficulty });
     } else this.setState({ difficulty: 3 });
-    const correct = { answer: questionObj.correct_answer, isCorret: true };
+    const correct = { answer: questionObj.correct_answer, isCorrect: true };
     const wrongs = questionObj.incorrect_answers.map((answer) => ({
       answer,
-      isCorret: false,
+      isCorrect: false,
     }));
     const answers = [...wrongs, correct];
     const answersMixer = answers.sort(() => Math.random() - NUMBER);

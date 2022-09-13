@@ -12,7 +12,7 @@ class Answer extends Component {
     const { answered } = this.state;
     if (isDisabled && !answered) {
       this.setState({
-        answerClass: (info.isCorret) ? 'answer-button correct' : 'answer-button wrong',
+        answerClass: (info.isCorrect) ? 'answer-button correct' : 'answer-button wrong',
         answered: true,
       });
     } else if (!isDisabled && answered) {
@@ -30,8 +30,8 @@ class Answer extends Component {
       <button
         type="button"
         disabled={ isDisabled }
-        data-testid={ (info.isCorret) ? 'correct-answer' : 'wrong-answer' }
-        onClick={ () => handleAnswer(info.isCorret) }
+        data-testid={ (info.isCorrect) ? 'correct-answer' : 'wrong-answer' }
+        onClick={ () => handleAnswer(info.isCorrect) }
         className={ answerClass }
       >
         { info.answer }
@@ -44,7 +44,7 @@ Answer.propTypes = {
   isDisabled: PropTypes.bool.isRequired,
   info: PropTypes.shape({
     answer: PropTypes.string.isRequired,
-    isCorret: PropTypes.bool.isRequired,
+    isCorrect: PropTypes.bool.isRequired,
   }).isRequired,
   handleAnswer: PropTypes.func.isRequired,
 };
