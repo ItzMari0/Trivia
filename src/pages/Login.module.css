@@ -1,0 +1,131 @@
+:root {
+
+  --grey: #6b7588;
+
+  --light-grey: #e1e5eb;
+
+  --white: white;
+
+  --light-green: #2fc18c;
+
+  --purple: #3c1b7a;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  height: 100vh;
+  justify-content: center;
+}
+
+.trybeIcon {
+  height: 51.8px;
+  width: 45.35px;
+}
+
+.form {
+  align-items: center;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 1px 4px 13px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 266px;
+  justify-content: center;
+  width: 614px;
+}
+
+.input {
+  align-items: flex-start;
+  border: 1px solid var(--light-grey);
+  color: var(--grey);
+  display: flex;
+  flex-direction: column;
+  font-family: Verdana , sans-serif;
+  font-size: 14px;
+  gap: 10px;
+  height: 20px;
+  padding: 12px 16px;
+  width: 519px;
+}
+
+.buttonsContainer {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.playButton {
+  background: var(--light-green);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  height: 45px;
+  left: 380px;
+  line-height: 150%;
+  opacity: 0.8;
+  top: 496px;
+  width: 519px;
+}
+
+.playButton:disabled {
+  background: var(--grey);
+  opacity: 1;
+}
+
+.settingsButton {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: var(--grey);
+  display: flex;
+  font-size: 25px;
+  height: 25px;
+  justify-content: center;
+  opacity: 0.9;
+  width: 25px;
+}
+
+.playButton:hover, .settingsButton:hover {
+  opacity: 1;
+}
+
+.yellowDecoration, .greenDecoration, .redDecoration, .blueDecoration {
+  filter: blur(8px);
+  position: absolute;
+  width: 150.16px;
+}
+
+.yellowDecoration {
+  height: 150px;
+  right: 100px;
+  top: 254px;
+  transform: rotate(16deg);
+}
+
+.greenDecoration {
+  height: 221px;
+  left: 198px;
+  top: 81px;
+}
+
+.redDecoration {
+  height: 92px;
+  right: 227px;
+  top: 47px;
+  transform: rotate(-30deg);
+}
+
+.blueDecoration {
+  bottom: 278px;
+  height: 153px;
+  left: 74px;
+}
