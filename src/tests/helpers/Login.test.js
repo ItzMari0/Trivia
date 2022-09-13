@@ -21,17 +21,22 @@ describe('Testa a tela de Login', () => {
       json: jest.fn().mockResolvedValue(MOCK_FETCH)
     })
   });
+
   it('a tela é renderizada corretamente', () => {
-    renderWithRouterAndRedux(<App />);
+    const { history } = renderWithRouterAndRedux(<App />);
 
     const inputName = screen.getByTestId(INPUT_NAME);
     expect(inputName).toBeInTheDocument();
 
     const inputEmail = screen.getByTestId(INPUT_EMAIL);
-    expect(inputName).toBeInTheDocument();
+    expect(inputEmail).toBeInTheDocument();
 
-    const playBtn = screen.getByRole('button', { name: /Play/i });
+    const playBtn = screen.getByRole('button', { name: /Jogar/i });
     expect(playBtn).toBeInTheDocument();
+
+    const settingsBtn = screen.getByTestId('btn-settings');
+    userEvent.click(settingsBtn);
+    expect(history.location.pathname).toBe('/settings');
   });
 
   it('os campos de "nome" e "email" são preenchidos e funcionais', async () => {
@@ -39,7 +44,7 @@ describe('Testa a tela de Login', () => {
 
     const inputName = screen.getByTestId(INPUT_NAME);
     const inputEmail = screen.getByTestId(INPUT_EMAIL);
-    const playBtn = screen.getByRole('button', { name: /Play/i });
+    const playBtn = screen.getByRole('button', { name: /Jogar/i });
 
     userEvent.type(inputName, NAME);
     expect(inputName).toHaveValue(NAME);
@@ -50,6 +55,5 @@ describe('Testa a tela de Login', () => {
 
     userEvent.click(playBtn);
     await waitFor(() => expect(history.location.pathname).toBe('/game'));
-
   });
 });
