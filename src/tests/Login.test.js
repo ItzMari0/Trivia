@@ -1,8 +1,8 @@
 import React from "react";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import App from '../../App';
-import renderWithRouterAndRedux from './renderWithRouterAndRedux';
+import App from "../App";
+import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 
 const INPUT_NAME = 'input-player-name';
 const INPUT_EMAIL = 'input-gravatar-email';
