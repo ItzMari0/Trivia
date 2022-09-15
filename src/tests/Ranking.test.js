@@ -1,8 +1,8 @@
 import React from "react";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import App from '../../App';
-import renderWithRouterAndRedux from './renderWithRouterAndRedux';
+import App from "../App";
+import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 
 const AVATAR = 'https://www.gravatar.com/avatar/812ba00112e6fb842d2a606ebeb70786';
 const AVATAR_TWO = 'https://www.gravatar.com/avatar/38c5f3df8603b9a7d8339d0c4607ccd2';
